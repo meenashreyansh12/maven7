@@ -15,7 +15,7 @@ pipeline
                 }
             }
         }
-        stage('ContBuild'_Master)
+        stage('ContBuild_Loans')
         {
             steps
             {
@@ -25,38 +25,5 @@ pipeline
                 }
             }
         }
-        stage('ContDeployment_Master')
-        {
-            steps
-            {
-                script
-                {
-                     cicd.newDeploy("Declarativepipelinewithsharedlibraries","172.31.42.106","testapp")
-                }
-            }
-        }
-         stage('ContTesting_Master')
-        {
-            steps
-            {
-                script
-                {
-                     cicd.gitDownload("FunctionalTesting")
-                     
-                     cicd.runSelenium("Declarativepipelinewithsharedlibraries")
-                }
-            }
-        }
-        stage('ContDelivery_Master')
-        {
-            steps
-            {
-                script
-                {
-                    cicd.newDeploy("Declarativepipelinewithsharedlibraries","172.31.41.94","prodapp")
-                }
-            }
-            
-        }
-    }
+     }
 }
